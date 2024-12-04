@@ -1,25 +1,46 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import deleteSvg from "../../assets/svg/delete.svg";
 import "./Modal.css";
 
-const Modal = ({ setAdd, addTransaction }) => {
+const Modal = ({
+  setAdd,
+  addTransaction,
+  editTransaction,
+  transactionToEdit,
+}) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [amount, setAmount] = useState("");
 
-  const handleAdd = (e) => {
+  useEffect(() => {
+    if (transactionToEdit) {
+      setFrom(transactionToEdit.from);
+      setTo(transactionToEdit.to);
+      setAmount(transactionToEdit.amount);
+    } else {
+      setFrom("");
+      setTo("");
+      setAmount("");
+    }
+  }, [transactionToEdit]);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!from || !to || !amount) {
       alert("All fields are required!");
       return;
     }
-    addTransaction({ from, to, amount });
-    setAdd(false);
+
+    if (transactionToEdit) {
+      editTransaction(transactionToEdit.id, { from, to, amount });
+    } else {
+      addTransaction({ from, to, amount });
+    }
   };
 
   return (
-    <form className="modal" onSubmit={handleAdd}>
+    <form className="modal" onSubmit={handleSubmit}>
       <img
         className="cancel"
         src={deleteSvg}
@@ -45,7 +66,7 @@ const Modal = ({ setAdd, addTransaction }) => {
         placeholder="Amount"
       />
       <button type="submit" className="add">
-        Add New Transaction
+        {transactionToEdit ? "Update Transaction" : "Add New Transaction"}
       </button>
     </form>
   );

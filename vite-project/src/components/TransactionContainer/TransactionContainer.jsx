@@ -5,11 +5,10 @@ import trash from "../../assets/svg/trash.svg";
 import edit from "../../assets/svg/edit.svg";
 
 const TransactionContainer = ({
-  deleteTransaction,
-  editTransaction,
-  setPopUp,
-  setDeleteId,
+  setTransactionToEdit,
   setAdd,
+  setDeleteId,
+  setPopUp,
 }) => {
   const url = "https://acb-api.algoritmika.org/api/transaction";
   const [transactions, setTransactions] = useState([]);
@@ -42,8 +41,8 @@ const TransactionContainer = ({
             <button
               className="delete"
               onClick={() => {
-                setDeleteId(item.id);
                 setPopUp(true);
+                setDeleteId(item.id);
               }}
             >
               <img src={trash} alt="Delete" />
@@ -51,7 +50,7 @@ const TransactionContainer = ({
             <button
               className="edit"
               onClick={() => {
-                editTransaction(item.id, item);
+                setTransactionToEdit(item);
                 setAdd(true);
               }}
             >
