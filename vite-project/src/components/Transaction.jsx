@@ -6,7 +6,7 @@ import PopUp from "./PopUp/PopUp";
 const Transaction = () => {
   const [add, setAdd] = useState(false);
   const [popUp, setPopUp] = useState(false);
-  const [transactionToDelete, setTransactionToDelete] = useState(null);
+  const [deleteId, setDeleteId] = useState(null);
 
   const addTransaction = async (newTransaction) => {
     const url = "https://acb-api.algoritmika.org/api/transaction";
@@ -26,12 +26,13 @@ const Transaction = () => {
   };
 
   const deleteTransaction = async () => {
-    const url = `https://acb-api.algoritmika.org/api/transaction/${transactionToDelete}`;
+    if (!deleteId) return;
+    const url = `https://acb-api.algoritmika.org/api/transaction/${deleteId}`;
     try {
       const response = await fetch(url, { method: "DELETE" });
       if (!response.ok) throw new Error("Error deleting transaction");
-      setPopUp(true);
-      setTransactionToDelete(null);
+      setPopUp(false);
+      setDeleteId(null);
     } catch (err) {
       console.error(err);
     }
@@ -48,7 +49,7 @@ const Transaction = () => {
         body: JSON.stringify(updatedTransaction),
       });
       if (!response.ok) throw new Error("Error editing transaction");
-      setAdd(true);
+      setAdd(false);
     } catch (err) {
       console.error(err);
     }
@@ -63,7 +64,7 @@ const Transaction = () => {
         deleteTransaction={deleteTransaction}
         editTransaction={editTransaction}
         setPopUp={setPopUp}
-        setTransactionToDelete={setTransactionToDelete}
+        setDeleteId={setDeleteId}
         setAdd={setAdd}
       />
       {add && <Modal setAdd={setAdd} addTransaction={addTransaction} />}

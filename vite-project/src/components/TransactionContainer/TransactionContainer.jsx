@@ -8,7 +8,7 @@ const TransactionContainer = ({
   deleteTransaction,
   editTransaction,
   setPopUp,
-  // setTransactionToDelete,
+  setDeleteId,
   setAdd,
 }) => {
   const url = "https://acb-api.algoritmika.org/api/transaction";
@@ -27,7 +27,7 @@ const TransactionContainer = ({
 
   useEffect(() => {
     loadTransactions();
-  }, []);
+  });
 
   return (
     <div className="transaction-container">
@@ -42,7 +42,7 @@ const TransactionContainer = ({
             <button
               className="delete"
               onClick={() => {
-                deleteTransaction(item.id);
+                setDeleteId(item.id);
                 setPopUp(true);
               }}
             >
