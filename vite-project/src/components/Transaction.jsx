@@ -26,9 +26,9 @@ const Transaction = () => {
     }
   };
 
-  const deleteTransaction = async (id) => {
+  const deleteTransaction = async () => {
     if (!deleteId) return;
-    const url = `https://acb-api.algoritmika.org/api/transaction/${id}`;
+    const url = `https://acb-api.algoritmika.org/api/transaction/${deleteId}`;
     try {
       const response = await fetch(url, { method: "DELETE" });
       if (!response.ok) throw new Error("Error deleting transaction");
