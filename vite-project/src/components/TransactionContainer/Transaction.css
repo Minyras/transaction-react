@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.add-transaction {
+  align-self: flex-end;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 10px;
+  border: none;
+  background-color: #e52e2f;
+  color: white;
+}
+
+.transaction-container {
+  /* border: 1px solid gray; */
+  border-radius: 10px;
+  margin-top: 40px;
+  width: 80%;
+  /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 20px; */
+  overflow-y: auto;
+  height: 80%;
+  padding: 0 15px 0 0;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+.card {
+  padding: 20px;
+  /* border: 1px solid black; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.information-title {
+  padding: 20px;
+}
+.information {
+  display: flex;
+  gap: 20px;
+  width: 80%;
+  justify-content: space-between;
+}
+
+.information p {
+  width: 20%;
+  font-size: 20px;
+}
+.buttons {
+  align-self: flex-end;
+}
+.buttons button {
+  background-color: transparent;
+  border: none;
+}
+.edit img {
+  width: 20px;
+  margin-right: 10px;
+}
+.delete img {
+  width: 16px;
+}
+.cancel {
+  width: 14px;
+  margin-bottom: 20px;
+  align-self: flex-end;
+}
+
+.modal,
+.pop-up {
+  display: none;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  z-index: 1000;
+  transition: all 1s ease-in-out;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal button.add {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #e52e2f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.pop-up {
+  width: 400px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.check {
+  width: 17px;
+}
+
+.x {
+  width: 13px;
+  margin-right: 20px;
+}
+
+.edit img {
+  margin-left: 20px;
+}
